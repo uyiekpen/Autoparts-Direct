@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,44 +25,50 @@ import {
   Smartphone,
   Menu,
   X,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Search,
 } from "lucide-react";
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [heroForm, setHeroForm] = useState({
-    email: "",
+    phone: "",
     status: "idle", // idle, loading, success, error
     message: "",
   });
-
   const [ctaForm, setCtaForm] = useState({
-    email: "",
+    phone: "",
     status: "idle", // idle, loading, success, error
     message: "",
   });
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const validateEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validatePhone = (phone: string) => {
+    // Nigerian phone number validation (basic)
+    return /^(\+234|0)[789][01]\d{8}$/.test(phone.replace(/\s/g, ""));
   };
 
-  const handleSubmit = async (formType: "hero" | "cta", email: string) => {
+  const handleSubmit = async (formType: "hero" | "cta", phone: string) => {
     const setForm = formType === "hero" ? setHeroForm : setCtaForm;
 
-    if (!email.trim()) {
+    if (!phone.trim()) {
       setForm((prev) => ({
         ...prev,
         status: "error",
-        message: "Please enter your email address",
+        message: "Please enter your phone number",
       }));
       return;
     }
 
-    if (!validateEmail(email)) {
+    if (!validatePhone(phone)) {
       setForm((prev) => ({
         ...prev,
         status: "error",
-        message: "Please enter a valid email address",
+        message: "Please enter a valid Nigerian phone number",
       }));
       return;
     }
@@ -76,7 +82,7 @@ export default function HomePage() {
         ...prev,
         status: "success",
         message:
-          "Thanks! You're on the waitlist. We'll notify you when we launch!",
+          "Perfect! You'll be added to our WhatsApp list. We'll notify you when we launch!",
       }));
     } catch (error) {
       setForm((prev) => ({
@@ -85,6 +91,54 @@ export default function HomePage() {
         message: "Something went wrong. Please try again.",
       }));
     }
+  };
+
+  const testimonials = [
+    {
+      name: "Adebayo O.",
+      location: "Lagos Mechanic",
+      text: "This platform saved my business! I can find any Toyota part in minutes instead of driving around Lagos for hours.",
+    },
+    {
+      name: "Fatima A.",
+      location: "Abuja Driver",
+      text: "Finally! A service that understands Nigerian cars. Found my Honda parts at the best price without stress.",
+    },
+    {
+      name: "Chidi N.",
+      location: "Port Harcourt",
+      text: "Game changer! SMS works even when network is poor. This is exactly what Nigeria needed.",
+    },
+    {
+      name: "Kemi S.",
+      location: "Ibadan Car Owner",
+      text: "No more wasting time at Computer Village! Got my Mercedes parts delivered to my doorstep.",
+    },
+    {
+      name: "Ibrahim M.",
+      location: "Kano Mechanic",
+      text: "The AI understands local part names perfectly. Even works with Hausa descriptions!",
+    },
+  ];
+
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 4000); // Auto-advance every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, testimonials.length]);
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -116,7 +170,7 @@ export default function HomePage() {
       <>
         <div className="flex items-center justify-center mb-4">
           <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
-            <Mail className="w-5 h-5 text-white" />
+            <Smartphone className="w-5 h-5 text-white" />
           </div>
         </div>
         <h3 className="font-serif font-bold text-lg text-white mb-2">
@@ -124,21 +178,21 @@ export default function HomePage() {
         </h3>
         <p className="text-gray-300 mb-6 text-sm">
           {formType === "hero"
-            ? "Be among the first to experience Nigeria's smartest auto parts platform"
-            : "Limited early access - Join the waitlist now!"}
+            ? "Be among the first to experience Nigeria's smartest auto parts platform via WhatsApp"
+            : "Limited early access - Join our WhatsApp list now!"}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <Input
-              type="email"
-              placeholder="Enter your email address"
-              value={form.email}
+              type="tel"
+              placeholder="Enter your phone number (e.g., 08012345678)"
+              value={form.phone}
               onChange={(e) => {
                 const setForm = formType === "hero" ? setHeroForm : setCtaForm;
                 setForm((prev) => ({
                   ...prev,
-                  email: e.target.value,
+                  phone: e.target.value,
                   status: "idle",
                   message: "",
                 }));
@@ -153,7 +207,7 @@ export default function HomePage() {
           </div>
           <Button
             size="default"
-            onClick={() => handleSubmit(formType, form.email)}
+            onClick={() => handleSubmit(formType, form.phone)}
             disabled={form.status === "loading"}
             className="px-6 py-3 text-sm font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white border-0 whitespace-nowrap"
           >
@@ -164,7 +218,7 @@ export default function HomePage() {
               </>
             ) : (
               <>
-                {formType === "hero" ? "Join Now" : "Get Access"}
+                {formType === "hero" ? "Join WhatsApp" : "Get Access"}
                 <ArrowRight className="w-4 h-4" />
               </>
             )}
@@ -180,11 +234,78 @@ export default function HomePage() {
 
         <p className="text-xs mt-4 flex items-center justify-center gap-2 text-gray-400">
           <Shield className="w-3 h-3" />
-          No spam • Instant updates • Nigerian-first platform
+          No spam • WhatsApp updates • Nigerian-first platform
         </p>
       </>
     );
   };
+
+  const products = [
+    {
+      id: 1,
+      name: "Brake Pads",
+      description: "Front & rear brake pads for all car models",
+      price: "₦8,000 - ₦25,000",
+      image: "/brake.jpeg",
+      popular: true,
+    },
+    {
+      id: 2,
+      name: "Engine Oil",
+      description: "Premium motor oil for all engine types",
+      price: "₦3,500 - ₦12,000",
+      image: "/engine-oil.jpeg",
+    },
+    {
+      id: 3,
+      name: "Air Filter",
+      description: "Engine air filters for better performance",
+      price: "₦2,000 - ₦8,000",
+      image: "/airfilter.jpeg",
+    },
+    {
+      id: 4,
+      name: "Spark Plugs",
+      description: "High-quality ignition spark plugs",
+      price: "₦1,500 - ₦5,000",
+      image: "/spark-plug-5EXKX88-600.jpg",
+    },
+    {
+      id: 5,
+      name: "Car Battery",
+      description: "12V automotive batteries, all sizes",
+      price: "₦15,000 - ₦45,000",
+      image: "/car-battery-power (1).png",
+      essential: true,
+    },
+    {
+      id: 6,
+      name: "Car Tires",
+      description: "Premium tires for all vehicle types",
+      price: "₦25,000 - ₦80,000",
+      image: "/car-tires-wheels-rubber (1).png",
+    },
+    {
+      id: 7,
+      name: "Alternator",
+      description: "Electrical charging system components",
+      price: "₦20,000 - ₦60,000",
+      image: "/car-alternator (1).png",
+    },
+    {
+      id: 8,
+      name: "Radiator",
+      description: "Engine cooling system radiators",
+      price: "₦18,000 - ₦55,000",
+      image: "/car-radiator-cooling-system (1).png",
+    },
+  ];
+
+  const filteredProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -214,6 +335,12 @@ export default function HomePage() {
                 className="text-gray-300 hover:text-red-400 transition-colors text-sm font-medium"
               >
                 How It Works
+              </button>
+              <button
+                onClick={() => scrollToSection("products")}
+                className="text-gray-300 hover:text-red-400 transition-colors text-sm font-medium"
+              >
+                Products
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
@@ -267,6 +394,12 @@ export default function HomePage() {
                   className="text-left text-gray-300 hover:text-red-400 transition-colors text-sm font-medium py-2"
                 >
                   How It Works
+                </button>
+                <button
+                  onClick={() => scrollToSection("products")}
+                  className="text-left text-gray-300 hover:text-red-400 transition-colors text-sm font-medium py-2"
+                >
+                  Products
                 </button>
                 <button
                   onClick={() => scrollToSection("testimonials")}
@@ -460,8 +593,104 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Products Section */}
+      <section id="products" className="px-4 py-12 bg-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="font-serif font-black text-2xl sm:text-3xl text-white mb-4">
+              Popular <span className="text-red-500">Auto Parts</span>
+            </h2>
+            <p className="text-base text-gray-300 max-w-2xl mx-auto mb-6">
+              Find the most requested auto parts by Nigerian car owners. Get
+              instant quotes from verified vendors.
+            </p>
+
+            <div className="max-w-md mx-auto relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-4 w-4 text-gray-400" />
+              </div>
+              <Input
+                type="text"
+                placeholder="Search auto parts..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 bg-gray-900/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-red-400 focus:ring-2 focus:ring-red-400/30 rounded-lg"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {filteredProducts.map((product) => (
+              <Card
+                key={product.id}
+                className="bg-gray-900/80 border-2 border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-lg group overflow-hidden h-[300px]"
+              >
+                <div className="aspect-square relative overflow-hidden">
+                  <img
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {product.popular && (
+                    <div className="absolute top-1 right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
+                      Popular
+                    </div>
+                  )}
+                  {product.essential && (
+                    <div className="absolute top-1 right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
+                      Essential
+                    </div>
+                  )}
+                </div>
+                <CardContent className="p-3">
+                  <h3 className="font-serif font-bold text-sm text-white mb-1 line-clamp-1">
+                    {product.name}
+                  </h3>
+                  <p className="text-gray-400 text-xs mb-2 line-clamp-2">
+                    {product.description}
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-red-500 font-bold text-xs">
+                      {product.price}
+                    </span>
+                    <Button
+                      size="sm"
+                      className="bg-red-500 hover:bg-red-600 text-white text-xs h-7 px-2"
+                    >
+                      Find Now
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-8">
+              <p className="text-gray-400 text-sm mb-4">
+                No parts found matching "{searchQuery}". Try a different search
+                term.
+              </p>
+            </div>
+          )}
+
+          <div className="text-center mt-8">
+            <p className="text-gray-400 text-sm mb-4">
+              Can't find what you're looking for? Our AI can help you find any
+              auto part!
+            </p>
+            <Button
+              onClick={() => scrollToSection("waitlist")}
+              className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-all duration-300 hover:shadow-lg"
+            >
+              Join Waitlist to Get Started
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
-      <section id="testimonials" className="px-4 py-12 bg-gray-800">
+      <section id="testimonials" className="px-4 py-12 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="font-serif font-black text-2xl sm:text-3xl text-white mb-4">
@@ -472,60 +701,75 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-gray-900/80 border border-gray-700 hover:border-red-500/30 transition-all duration-300">
-              <CardContent className="pt-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
-                    <Users className="w-5 h-5 text-white" />
+          <div className="relative max-w-4xl mx-auto">
+            {/* Carousel Container */}
+            <div
+              className="overflow-hidden rounded-xl"
+              onMouseEnter={() => setIsAutoPlaying(false)}
+              onMouseLeave={() => setIsAutoPlaying(true)}
+            >
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(-${currentTestimonial * 100}%)`,
+                }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-4">
+                    <Card className="bg-gray-900/80 border border-gray-700 hover:border-red-500/30 transition-all duration-300 mx-auto max-w-2xl">
+                      <CardContent className="pt-6 pb-6">
+                        <div className="text-center">
+                          <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Users className="w-8 h-8 text-white" />
+                          </div>
+                          <p className="text-gray-300 italic leading-relaxed text-base mb-6">
+                            "{testimonial.text}"
+                          </p>
+                          <div>
+                            <h4 className="font-bold text-white text-lg">
+                              {testimonial.name}
+                            </h4>
+                            <p className="text-sm text-red-400">
+                              {testimonial.location}
+                            </p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                  <div className="ml-3">
-                    <h4 className="font-bold text-white text-sm">Adebayo O.</h4>
-                    <p className="text-xs text-red-400">Lagos Mechanic</p>
-                  </div>
-                </div>
-                <p className="text-gray-300 italic leading-relaxed text-sm">
-                  "This platform saved my business! I can find any Toyota part
-                  in minutes instead of driving around Lagos for hours."
-                </p>
-              </CardContent>
-            </Card>
+                ))}
+              </div>
+            </div>
 
-            <Card className="bg-gray-900/80 border border-gray-700 hover:border-red-500/30 transition-all duration-300">
-              <CardContent className="pt-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
-                    <Users className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="ml-3">
-                    <h4 className="font-bold text-white text-sm">Fatima A.</h4>
-                    <p className="text-xs text-red-400">Abuja Driver</p>
-                  </div>
-                </div>
-                <p className="text-gray-300 italic leading-relaxed text-sm">
-                  "Finally! A service that understands Nigerian cars. Found my
-                  Honda parts at the best price without stress."
-                </p>
-              </CardContent>
-            </Card>
+            {/* Navigation Buttons */}
+            <button
+              onClick={prevTestimonial}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
 
-            <Card className="bg-gray-900/80 border border-gray-700 hover:border-red-500/30 transition-all duration-300 sm:col-span-2 lg:col-span-1">
-              <CardContent className="pt-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
-                    <Users className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="ml-3">
-                    <h4 className="font-bold text-white text-sm">Chidi N.</h4>
-                    <p className="text-xs text-red-400">Port Harcourt</p>
-                  </div>
-                </div>
-                <p className="text-gray-300 italic leading-relaxed text-sm">
-                  "Game changer! SMS works even when network is poor. This is
-                  exactly what Nigeria needed."
-                </p>
-              </CardContent>
-            </Card>
+            <button
+              onClick={nextTestimonial}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-8">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentTestimonial
+                      ? "bg-red-500 scale-125"
+                      : "bg-gray-600 hover:bg-gray-500"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -583,16 +827,16 @@ export default function HomePage() {
                 Autoparts Direct
               </h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-3">
-                Nigeria's first AI-powered SMS platform for instant auto parts
+                Nigeria's first AI-powered platform for instant auto parts
                 sourcing. Connecting car owners with verified vendors across the
                 country.
               </p>
-              <div className="flex items-center gap-2 text-red-400 text-xs">
+              {/* <div className="flex items-center gap-2 text-red-400 text-xs">
                 <Shield className="w-3 h-3" />
                 <span className="font-semibold">
                   Built by Nigerians, for Nigerians 🇳🇬
                 </span>
-              </div>
+              </div> */}
             </div>
 
             {/* Contact Info */}
@@ -600,24 +844,45 @@ export default function HomePage() {
               <h4 className="font-serif font-bold text-base text-white mb-3">
                 Contact Us
               </h4>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors">
-                  <Mail className="w-3 h-3 text-red-400" />
-                  <a href="mailto:hello@autopartsdirect.ng" className="text-xs">
-                    hello@autopartsdirect.ng
+
+              <ul className="space-y-2">
+                {/* Email */}
+                <li>
+                  <a
+                    href="mailto:hello@autopartsdirect.ng"
+                    className="group flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400/40 rounded"
+                    aria-label="Send an email to hello@autopartsdirect.ng"
+                  >
+                    <span className="w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center transition-all group-hover:bg-gray-700">
+                      <Mail className="w-3.5 h-3.5 text-red-400" />
+                    </span>
+                    <span className="text-xs">hello@autopartsdirect.ng</span>
                   </a>
-                </div>
-                <div className="flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors">
-                  <Smartphone className="w-3 h-3 text-red-400" />
-                  <a href="tel:+2348012345678" className="text-xs">
-                    +234 801 234 5678
+                </li>
+
+                {/* Phone */}
+                <li>
+                  <a
+                    href="tel:+2348012345678"
+                    className="group flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400/40 rounded"
+                    aria-label="Call +234 801 234 5678"
+                  >
+                    <span className="w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center transition-all">
+                      <Smartphone className="w-3.5 h-3.5" />
+                    </span>
+                    <span className="text-xs">+234 801 234 5678</span>
                   </a>
-                </div>
-                <div className="flex items-center gap-2 text-gray-300">
-                  <Target className="w-3 h-3 text-red-400" />
+                </li>
+
+                {/* Location */}
+                <li className="flex items-center gap-2 text-gray-300">
+                  <span className="w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center">
+                    {/* MapPin reads clearer than Target for location */}
+                    <MapPin className="w-3.5 h-3.5" />
+                  </span>
                   <span className="text-xs">Lagos, Nigeria</span>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
 
             {/* Social Links */}
@@ -630,44 +895,58 @@ export default function HomePage() {
                   href="https://twitter.com/autopartsdirect"
                   className="flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors group"
                 >
-                  <div className="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-red-500 transition-all">
+                  <div className="w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center transition-all">
                     <svg
-                      className="w-3 h-3"
-                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
                       viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-facebook-icon lucide-facebook"
                     >
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>{" "}
                   </div>
                   <span className="text-xs">@autopartsdirect</span>
                 </a>
                 <a
-                  href="https://instagram.com/autopartsdirect"
+                  href="https://www.instagram.com/auto.partdirect?igsh=OGU5MmFsYnZ5aXo2"
                   className="flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors group"
                 >
-                  <div className="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-red-500 transition-all">
+                  <div className="w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center  transition-all">
                     <svg
-                      className="w-3 h-3"
-                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
                       viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-instagram-icon lucide-instagram"
                     >
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-4.358-.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                    </svg>{" "}
                   </div>
-                  <span className="text-xs">@autopartsdirect</span>
+                  <span className="text-xs">@auto.partdirect</span>
                 </a>
                 <a
                   href="https://linkedin.com/company/autopartsdirect"
                   className="flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors group"
                 >
-                  <div className="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-red-500 transition-all">
-                    <svg
-                      className="w-3 h-3"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
+                  <div className="w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-red-500 transition-all">
+                    <img
+                      src="/tiktok.png"
+                      alt=""
+                      className="w-[20px] h-[20px] "
+                    />
                   </div>
                   <span className="text-xs">AutopartsDirect</span>
                 </a>
@@ -678,8 +957,7 @@ export default function HomePage() {
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-gray-400 text-xs text-center sm:text-left">
-              © 2024 Autoparts Direct. Revolutionizing auto parts access across
-              Nigeria.
+              © 2025 Autoparts Direct.
             </p>
             <div className="flex items-center gap-3 text-gray-500 text-xs">
               <a href="#" className="hover:text-red-400 transition-colors">
