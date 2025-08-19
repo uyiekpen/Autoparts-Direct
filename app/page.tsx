@@ -154,7 +154,7 @@ export default function HomePage() {
       return (
         <div className="text-center">
           <div className="flex items-center justify-center mb-4">
-            <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg">
               <CheckCircle className="w-6 h-6 text-white" />
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
     return (
       <>
         <div className="flex items-center justify-center mb-4">
-          <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
+          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg">
             <Smartphone className="w-5 h-5 text-white" />
           </div>
         </div>
@@ -200,7 +200,7 @@ export default function HomePage() {
               className={`w-full px-4 py-3 text-sm border-2 rounded-lg transition-all duration-200 bg-gray-800/50 backdrop-blur text-white placeholder:text-gray-400 ${
                 form.status === "error"
                   ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-400/30"
-                  : "border-gray-600 focus:border-red-400 focus:ring-2 focus:ring-red-400/30"
+                  : "border-gray-600 focus:border-primary focus:ring-2 focus:ring-primary/30"
               }`}
               disabled={form.status === "loading"}
             />
@@ -209,7 +209,7 @@ export default function HomePage() {
             size="default"
             onClick={() => handleSubmit(formType, form.phone)}
             disabled={form.status === "loading"}
-            className="px-6 py-3 text-sm font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white border-0 whitespace-nowrap"
+            className="px-6 py-3 text-sm font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-black border-0 whitespace-nowrap"
           >
             {form.status === "loading" ? (
               <>
@@ -309,48 +309,47 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-gray-800">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#E3E7EA] backdrop-blur-xl border-b border-gray-80">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center shadow-lg">
-                <Zap className="w-5 h-5 text-white" />
-              </div>
-              <h1 className="font-serif font-bold text-lg">
-                <span className="text-red-500">Autoparts Direct</span>
-              </h1>
+              <img
+                src="/logo.png"
+                alt="Auto Parts Direct Logo"
+                className="h-10 w-[100px] object-cover"
+              />
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6">
               <button
                 onClick={() => scrollToSection("features")}
-                className="text-gray-300 hover:text-red-400 transition-colors text-sm font-medium"
+                className="text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium"
               >
                 Features
               </button>
               <button
                 onClick={() => scrollToSection("how-it-works")}
-                className="text-gray-300 hover:text-red-400 transition-colors text-sm font-medium"
+                className="text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium"
               >
                 How It Works
               </button>
               <button
                 onClick={() => scrollToSection("products")}
-                className="text-gray-300 hover:text-red-400 transition-colors text-sm font-medium"
+                className="text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium"
               >
                 Products
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
-                className="text-gray-300 hover:text-red-400 transition-colors text-sm font-medium"
+                className="text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium"
               >
                 Reviews
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="text-gray-300 hover:text-red-400 transition-colors text-sm font-medium"
+                className="text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium"
               >
                 Contact
               </button>
@@ -360,7 +359,7 @@ export default function HomePage() {
             <div className="hidden md:flex items-center gap-4">
               <Button
                 onClick={() => scrollToSection("waitlist")}
-                className="px-4 py-2 text-sm font-bold rounded-lg bg-red-500 hover:bg-red-600 text-white border-0 transition-all duration-300 hover:shadow-lg"
+                className="px-4 py-2 text-sm font-bold rounded-lg bg-secondary hover:bg-secondary/90 text-black border-0 transition-all duration-300 hover:shadow-lg"
               >
                 Join Waitlist
               </Button>
@@ -369,7 +368,7 @@ export default function HomePage() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-300 hover:text-red-400 transition-colors"
+              className="md:hidden p-2 text-[#3C464D] hover:text-secondary transition-colors"
             >
               {mobileMenuOpen ? (
                 <X className="w-5 h-5" />
@@ -385,37 +384,37 @@ export default function HomePage() {
               <nav className="flex flex-col gap-3">
                 <button
                   onClick={() => scrollToSection("features")}
-                  className="text-left text-gray-300 hover:text-red-400 transition-colors text-sm font-medium py-2"
+                  className="text-left text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium py-2"
                 >
                   Features
                 </button>
                 <button
                   onClick={() => scrollToSection("how-it-works")}
-                  className="text-left text-gray-300 hover:text-red-400 transition-colors text-sm font-medium py-2"
+                  className="text-left text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium py-2"
                 >
                   How It Works
                 </button>
                 <button
                   onClick={() => scrollToSection("products")}
-                  className="text-left text-gray-300 hover:text-red-400 transition-colors text-sm font-medium py-2"
+                  className="text-left text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium py-2"
                 >
                   Products
                 </button>
                 <button
                   onClick={() => scrollToSection("testimonials")}
-                  className="text-left text-gray-300 hover:text-red-400 transition-colors text-sm font-medium py-2"
+                  className="text-left text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium py-2"
                 >
                   Reviews
                 </button>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="text-left text-gray-300 hover:text-red-400 transition-colors text-sm font-medium py-2"
+                  className="text-left text-[#3C464D] hover:text-secondary transition-colors text-sm font-medium py-2"
                 >
                   Contact
                 </button>
                 <Button
                   onClick={() => scrollToSection("waitlist")}
-                  className="mt-2 w-full text-sm font-bold rounded-lg bg-red-500 hover:bg-red-600 text-white border-0"
+                  className="mt-2 w-full text-sm font-bold rounded-lg bg-secondary hover:bg-secondary/90 text-black border-0"
                 >
                   Join Waitlist
                 </Button>
@@ -430,22 +429,22 @@ export default function HomePage() {
         id="hero"
         className="px-4 py-12 pt-20 max-w-7xl mx-auto text-center relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 via-gray-900 to-gray-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-gray-900 to-gray-900"></div>
         <div className="relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 bg-red-500/20 border border-red-500/30 rounded-full px-4 py-2 text-white font-semibold text-xs">
+          <div className="inline-flex items-center gap-2 bg-secondary/20 border border-secondary/30 rounded-full px-4 py-2 text-white font-semibold text-xs">
             <Zap className="w-3 h-3" />
             LAUNCHING SOON IN NIGERIA
           </div>
 
           <h1 className="font-serif font-black text-2xl sm:text-3xl md:text-4xl text-white leading-tight">
             Get Auto Parts in{" "}
-            <span className="text-red-500">Minutes, Not Hours</span>
+            <span className="text-secondary">Minutes, Not Hours</span>
           </h1>
 
           <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Nigeria's first AI-powered SMS platform for instant auto parts
             sourcing.
-            <span className="text-red-500 font-semibold">
+            <span className="text-secondary font-semibold">
               {" "}
               No more endless searching!
             </span>
@@ -475,7 +474,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h2 className="font-serif font-black text-2xl sm:text-3xl text-white mb-4">
               Why Nigerian Car Owners{" "}
-              <span className="text-red-500">Choose Us</span>
+              <span className="text-secondary">Choose Us</span>
             </h2>
             <p className="text-base text-gray-300 max-w-2xl mx-auto">
               Built specifically for Nigeria's unique automotive market and
@@ -484,9 +483,9 @@ export default function HomePage() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-lg group">
+            <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group">
               <CardHeader className="text-center pb-3">
-                <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                   <Smartphone className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="font-serif font-bold text-lg text-white">
@@ -501,9 +500,9 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-lg group">
+            <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group">
               <CardHeader className="text-center pb-3">
-                <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                   <Brain className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="font-serif font-bold text-lg text-white">
@@ -518,9 +517,9 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-lg group sm:col-span-2 lg:col-span-1">
+            <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group sm:col-span-2 lg:col-span-1">
               <CardHeader className="text-center pb-3">
-                <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                   <Target className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="font-serif font-bold text-lg text-white">
@@ -543,7 +542,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="font-serif font-black text-2xl sm:text-3xl text-white mb-4">
-              Get Parts in <span className="text-red-500">3 Simple Steps</span>
+              Get Parts in{" "}
+              <span className="text-secondary">3 Simple Steps</span>
             </h2>
             <p className="text-base text-gray-300">
               Revolutionary simplicity for Nigerian car owners
@@ -552,7 +552,7 @@ export default function HomePage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="text-center group">
-              <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <span className="text-xl font-black text-white">1</span>
               </div>
               <h3 className="font-serif font-bold text-lg text-white mb-3">
@@ -565,7 +565,7 @@ export default function HomePage() {
             </div>
 
             <div className="text-center group">
-              <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <span className="text-xl font-black text-white">2</span>
               </div>
               <h3 className="font-serif font-bold text-lg text-white mb-3">
@@ -578,7 +578,7 @@ export default function HomePage() {
             </div>
 
             <div className="text-center group sm:col-span-2 lg:col-span-1">
-              <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <span className="text-xl font-black text-white">3</span>
               </div>
               <h3 className="font-serif font-bold text-lg text-white mb-3">
@@ -598,7 +598,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="font-serif font-black text-2xl sm:text-3xl text-white mb-4">
-              Popular <span className="text-red-500">Auto Parts</span>
+              Popular <span className="text-secondary">Auto Parts</span>
             </h2>
             <p className="text-base text-gray-300 max-w-2xl mx-auto mb-6">
               Find the most requested auto parts by Nigerian car owners. Get
@@ -614,7 +614,7 @@ export default function HomePage() {
                 placeholder="Search auto parts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-900/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-red-400 focus:ring-2 focus:ring-red-400/30 rounded-lg"
+                className="w-full pl-10 pr-4 py-2 bg-gray-900/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-secondary focus:ring-2 focus:ring-secondary/30 rounded-lg"
               />
             </div>
           </div>
@@ -623,7 +623,7 @@ export default function HomePage() {
             {filteredProducts.map((product) => (
               <Card
                 key={product.id}
-                className="bg-gray-900/80 border-2 border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-lg group overflow-hidden h-[300px]"
+                className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group overflow-hidden h-[400px]"
               >
                 <div className="aspect-square relative overflow-hidden">
                   <img
@@ -632,12 +632,12 @@ export default function HomePage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   {product.popular && (
-                    <div className="absolute top-1 right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
+                    <div className="absolute top-1 right-1 bg-secondary text-black text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
                       Popular
                     </div>
                   )}
                   {product.essential && (
-                    <div className="absolute top-1 right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
+                    <div className="absolute top-1 right-1 bg-secondary text-black text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
                       Essential
                     </div>
                   )}
@@ -650,12 +650,12 @@ export default function HomePage() {
                     {product.description}
                   </p>
                   <div className="flex flex-col gap-2">
-                    <span className="text-red-500 font-bold text-xs">
+                    <span className="text-secondary font-bold text-xs">
                       {product.price}
                     </span>
                     <Button
                       size="sm"
-                      className="bg-red-500 hover:bg-red-600 text-white text-xs h-7 px-2"
+                      className="bg-secondary hover:bg-secondary/90 text-black text-xs h-7 px-2"
                     >
                       Find Now
                     </Button>
@@ -681,7 +681,7 @@ export default function HomePage() {
             </p>
             <Button
               onClick={() => scrollToSection("waitlist")}
-              className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-all duration-300 hover:shadow-lg"
+              className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-black font-bold rounded-lg transition-all duration-300 hover:shadow-lg"
             >
               Join Waitlist to Get Started
             </Button>
@@ -690,11 +690,12 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="px-4 py-12 bg-black">
+      <section id="testimonials" className="px-4 py-12 bg-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="font-serif font-black text-2xl sm:text-3xl text-white mb-4">
-              Nigerian Car Owners <span className="text-red-500">Love Us</span>
+              Nigerian Car Owners{" "}
+              <span className="text-secondary">Love Us</span>
             </h2>
             <p className="text-base text-gray-300">
               Join thousands who've revolutionized their auto parts shopping
@@ -716,10 +717,10 @@ export default function HomePage() {
               >
                 {testimonials.map((testimonial, index) => (
                   <div key={index} className="w-full flex-shrink-0 px-4">
-                    <Card className="bg-gray-900/80 border border-gray-700 hover:border-red-500/30 transition-all duration-300 mx-auto max-w-2xl">
+                    <Card className="bg-gray-900/80 border border-gray-700 hover:border-secondary/30 transition-all duration-300 mx-auto max-w-2xl">
                       <CardContent className="pt-6 pb-6">
                         <div className="text-center">
-                          <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                             <Users className="w-8 h-8 text-white" />
                           </div>
                           <p className="text-gray-300 italic leading-relaxed text-base mb-6">
@@ -729,7 +730,7 @@ export default function HomePage() {
                             <h4 className="font-bold text-white text-lg">
                               {testimonial.name}
                             </h4>
-                            <p className="text-sm text-red-400">
+                            <p className="text-sm text-secondary">
                               {testimonial.location}
                             </p>
                           </div>
@@ -744,14 +745,14 @@ export default function HomePage() {
             {/* Navigation Buttons */}
             <button
               onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-primary hover:bg-primary/90 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
 
             <button
               onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-primary hover:bg-primary/90 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -764,7 +765,7 @@ export default function HomePage() {
                   onClick={() => setCurrentTestimonial(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentTestimonial
-                      ? "bg-red-500 scale-125"
+                      ? "bg-secondary scale-125"
                       : "bg-gray-600 hover:bg-gray-500"
                   }`}
                 />
@@ -775,7 +776,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 py-12 bg-red-600 relative overflow-hidden">
+      <section className="px-4 py-12 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur border border-white/30 rounded-full px-4 py-2 text-white font-bold text-xs mb-4">
@@ -818,30 +819,28 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="px-4 py-8 bg-black">
+      <footer id="contact" className="px-4 py-8 bg-[#E3E7EA]">
         <div className="max-w-6xl mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
             {/* Company Info */}
             <div className="sm:col-span-2 lg:col-span-2">
-              <h3 className="font-serif font-bold text-xl text-red-500 mb-3">
-                Autoparts Direct
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-3">
+              <div className="flex items-center gap-3">
+                <img
+                  src="/logo.png"
+                  alt="Auto Parts Direct Logo"
+                  className="h-10 w-[100px] object-cover"
+                />
+              </div>
+              <p className="text-[#3C464D]  text-sm leading-relaxed mt-3">
                 Nigeria's first AI-powered platform for instant auto parts
                 sourcing. Connecting car owners with verified vendors across the
                 country.
               </p>
-              {/* <div className="flex items-center gap-2 text-red-400 text-xs">
-                <Shield className="w-3 h-3" />
-                <span className="font-semibold">
-                  Built by Nigerians, for Nigerians 🇳🇬
-                </span>
-              </div> */}
             </div>
 
             {/* Contact Info */}
             <div>
-              <h4 className="font-serif font-bold text-base text-white mb-3">
+              <h4 className="font-serif font-bold text-base text-[#3C464D]  mb-3">
                 Contact Us
               </h4>
 
@@ -850,13 +849,15 @@ export default function HomePage() {
                 <li>
                   <a
                     href="mailto:hello@autopartsdirect.ng"
-                    className="group flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400/40 rounded"
+                    className="group flex items-center gap-2 text-[#3C464D]  hover:text-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/40 rounded"
                     aria-label="Send an email to hello@autopartsdirect.ng"
                   >
                     <span className="w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center transition-all group-hover:bg-gray-700">
-                      <Mail className="w-3.5 h-3.5 text-red-400" />
+                      <Mail className="w-3.5 h-3.5 text-secondary" />
                     </span>
-                    <span className="text-xs">hello@autopartsdirect.ng</span>
+                    <span className="text-xs text-[#3C464D]">
+                      hello@autopartsdirect.ng
+                    </span>
                   </a>
                 </li>
 
@@ -864,21 +865,21 @@ export default function HomePage() {
                 <li>
                   <a
                     href="tel:+2348012345678"
-                    className="group flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400/40 rounded"
+                    className="group flex items-center gap-2 text-[#3C464D]  hover:text-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/40 rounded"
                     aria-label="Call +234 801 234 5678"
                   >
                     <span className="w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center transition-all">
-                      <Smartphone className="w-3.5 h-3.5" />
+                      <Smartphone className="w-3.5 h-3.5 text-white" />
                     </span>
                     <span className="text-xs">+234 801 234 5678</span>
                   </a>
                 </li>
 
                 {/* Location */}
-                <li className="flex items-center gap-2 text-gray-300">
+                <li className="flex items-center gap-2 text-[#3C464D] ">
                   <span className="w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center">
                     {/* MapPin reads clearer than Target for location */}
-                    <MapPin className="w-3.5 h-3.5" />
+                    <MapPin className="w-3.5 h-3.5 text-white" />
                   </span>
                   <span className="text-xs">Lagos, Nigeria</span>
                 </li>
@@ -887,13 +888,13 @@ export default function HomePage() {
 
             {/* Social Links */}
             <div>
-              <h4 className="font-serif font-bold text-base text-white mb-3">
+              <h4 className="font-serif font-bold text-base text-[#3C464D] mb-3">
                 Follow Us
               </h4>
               <div className="space-y-2">
                 <a
                   href="https://twitter.com/autopartsdirect"
-                  className="flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors group"
+                  className="flex items-center gap-2 text-[#3C464D]  hover:text-secondary transition-colors group"
                 >
                   <div className="w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center transition-all">
                     <svg
@@ -902,7 +903,7 @@ export default function HomePage() {
                       height="20"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="white"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -911,11 +912,11 @@ export default function HomePage() {
                       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                     </svg>{" "}
                   </div>
-                  <span className="text-xs">@autopartsdirect</span>
+                  <span className="text-xs">autopartsdirect</span>
                 </a>
                 <a
                   href="https://www.instagram.com/auto.partdirect?igsh=OGU5MmFsYnZ5aXo2"
-                  className="flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors group"
+                  className="flex items-center gap-2 text-[#3C464D] hover:text-secondary transition-colors group"
                 >
                   <div className="w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center  transition-all">
                     <svg
@@ -924,22 +925,22 @@ export default function HomePage() {
                       height="20"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="white"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="lucide lucide-instagram-icon lucide-instagram"
+                      className="lucide lucide-instagram"
                     >
                       <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                    </svg>{" "}
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
                   </div>
-                  <span className="text-xs">@auto.partdirect</span>
+                  <span className="text-xs">auto.partdirect</span>
                 </a>
                 <a
                   href="https://linkedin.com/company/autopartsdirect"
-                  className="flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors group"
+                  className="flex items-center gap-2 text-[#3C464D] hover:text-secondary transition-colors group"
                 >
                   <div className="w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-red-500 transition-all">
                     <img
@@ -956,15 +957,15 @@ export default function HomePage() {
 
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-gray-400 text-xs text-center sm:text-left">
+            <p className="text-[#3C464D]  text-xs text-center sm:text-left">
               © 2025 Autoparts Direct.
             </p>
-            <div className="flex items-center gap-3 text-gray-500 text-xs">
-              <a href="#" className="hover:text-red-400 transition-colors">
+            <div className="flex items-center gap-3 text-[#3C464D]  text-xs">
+              <a href="#" className="hover:text-secondary transition-colors">
                 Privacy Policy
               </a>
               <span>•</span>
-              <a href="#" className="hover:text-red-400 transition-colors">
+              <a href="#" className="hover:text-secondary transition-colors">
                 Terms of Service
               </a>
             </div>

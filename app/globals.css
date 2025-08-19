@@ -10,71 +10,90 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  /* Updated primary to gunmetal grey (#3C464D) */
+  --primary: oklch(0.3 0.02 220);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  /* Updated secondary to safety yellow (#F3E301) */
+  --secondary: oklch(0.88 0.15 85);
+  --secondary-foreground: oklch(0.145 0 0);
+  /* Updated muted to concrete grey (#E7E7EA) */
+  --muted: oklch(0.92 0.005 220);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* Updated accent to electric teal */
+  --accent: oklch(0.65 0.12 195);
+  --accent-foreground: oklch(0.985 0 0);
+  /* Updated destructive to safety yellow for warnings */
+  --destructive: oklch(0.88 0.15 85);
+  --destructive-foreground: oklch(0.145 0 0);
+  /* Updated border to matte silver (#9AA0A5) */
+  --border: oklch(0.68 0.01 220);
+  --input: oklch(0.68 0.01 220);
+  /* Updated ring to gunmetal grey */
+  --ring: oklch(0.3 0.02 220);
+  /* Updated chart colors to brand palette variations */
+  --chart-1: oklch(0.3 0.02 220);
+  --chart-2: oklch(0.88 0.15 85);
+  --chart-3: oklch(0.65 0.12 195);
+  --chart-4: oklch(0.68 0.01 220);
+  --chart-5: oklch(0.145 0 0);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  /* Updated sidebar primary to gunmetal grey */
+  --sidebar-primary: oklch(0.3 0.02 220);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  /* Updated font variables for bold Nigerian tech startup vibe */
-  --font-open-sans: "Open Sans", system-ui, -apple-system, sans-serif;
-  --font-work-sans: "Work Sans", system-ui, -apple-system, sans-serif;
+  /* Updated sidebar accent to electric teal */
+  --sidebar-accent: oklch(0.65 0.12 195);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.68 0.01 220);
+  --sidebar-ring: oklch(0.3 0.02 220);
+  --font-inter: "Inter", sans-serif;
+  --font-space-mono: "Space Mono", monospace;
+  --font-oswald: "Oswald", serif;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  /* Updated dark mode background to jet black (#181F22) */
+  --background: oklch(0.12 0.01 220);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
+  --card: oklch(0.12 0.01 220);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
+  --popover: oklch(0.12 0.01 220);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
+  /* Updated dark mode primary to lighter gunmetal grey */
+  --primary: oklch(0.4 0.02 220);
+  --primary-foreground: oklch(0.985 0 0);
+  /* Updated dark mode secondary to dimmed safety yellow */
+  --secondary: oklch(0.75 0.12 85);
+  --secondary-foreground: oklch(0.145 0 0);
+  /* Updated dark mode muted to darker grey */
+  --muted: oklch(0.2 0.01 220);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  /* Updated dark mode accent to dimmed electric teal */
+  --accent: oklch(0.5 0.1 195);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  /* Updated dark mode destructive */
+  --destructive: oklch(0.75 0.12 85);
+  --destructive-foreground: oklch(0.145 0 0);
+  --border: oklch(0.25 0.01 220);
+  --input: oklch(0.25 0.01 220);
+  --ring: oklch(0.4 0.02 220);
+  /* Updated dark mode chart colors */
+  --chart-1: oklch(0.4 0.02 220);
+  --chart-2: oklch(0.75 0.12 85);
+  --chart-3: oklch(0.5 0.1 195);
+  --chart-4: oklch(0.6 0.01 220);
+  --chart-5: oklch(0.85 0.01 220);
+  --sidebar: oklch(0.15 0.01 220);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  /* Updated dark sidebar primary */
+  --sidebar-primary: oklch(0.4 0.02 220);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  /* Updated dark sidebar accent */
+  --sidebar-accent: oklch(0.5 0.1 195);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --sidebar-border: oklch(0.25 0.01 220);
+  --sidebar-ring: oklch(0.4 0.02 220);
 }
 
 @theme inline {
@@ -114,9 +133,10 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  /* Proper font mapping - Work Sans for headlines (serif), Open Sans for body (sans) */
-  --font-sans: var(--font-open-sans);
-  --font-serif: var(--font-work-sans);
+  /* Adding brand typography configuration */
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-space-mono);
+  --font-serif: var(--font-oswald);
 }
 
 @layer base {
@@ -126,67 +146,22 @@
   body {
     @apply bg-background text-foreground;
   }
-
-  /* Enhanced typography for bold Nigerian tech startup vibe */
-  .font-serif {
-    font-family: var(--font-work-sans), system-ui, -apple-system, sans-serif;
-    font-feature-settings: "kern" 1, "liga" 1;
+  /* Brand typography hierarchy */
+  h1 {
+    @apply font-serif font-bold uppercase tracking-wider;
   }
 
-  .font-sans {
-    font-family: var(--font-open-sans), system-ui, -apple-system, sans-serif;
-    font-feature-settings: "kern" 1, "liga" 1;
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-mono font-bold;
   }
 
-  /* Smooth scrolling and enhanced focus states */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Enhanced button and interactive element styling */
-  button,
-  [role="button"] {
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Better focus visibility for accessibility */
-  :focus-visible {
-    outline: 2px solid #f59e0b; /* Updated to a specific color value */
-    outline-offset: 2px;
-  }
-
-  /* Improved text rendering */
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
-}
-
-/* Custom animations for Nigerian tech startup energy */
-@layer utilities {
-  .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .animate-bounce-subtle {
-    animation: bounce-subtle 2s infinite;
-  }
-
-  @keyframes bounce-subtle {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-5px);
-    }
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, #ef4444, #f59e0b); /* Updated to specific color values */
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+  p,
+  span,
+  div {
+    @apply font-sans;
   }
 }
