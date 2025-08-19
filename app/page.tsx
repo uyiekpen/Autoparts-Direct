@@ -893,7 +893,7 @@ export default function HomePage() {
               </h4>
               <div className="space-y-2">
                 <a
-                  href="https://twitter.com/autopartsdirect"
+                  href="https://www.facebook.com/share/1BPmqNzynH/"
                   className="flex items-center gap-2 text-[#3C464D]  hover:text-secondary transition-colors group"
                 >
                   <div className="w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center transition-all">
