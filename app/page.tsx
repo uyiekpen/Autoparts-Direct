@@ -856,7 +856,7 @@ export default function HomePage() {
                       <Mail className="w-3.5 h-3.5 text-secondary" />
                     </span>
                     <span className="text-xs text-[#3C464D]">
-                      hello@autopartsdirect.ng
+                      autopartsdirect4@gmail.com{" "}
                     </span>
                   </a>
                 </li>
@@ -939,7 +939,7 @@ export default function HomePage() {
                   <span className="text-xs">auto.partdirect</span>
                 </a>
                 <a
-                  href="https://linkedin.com/company/autopartsdirect"
+                  href="https://www.tiktok.com/@auto_partsdirect2?is_from_webapp=1&sender_device=pc"
                   className="flex items-center gap-2 text-[#3C464D] hover:text-secondary transition-colors group"
                 >
                   <div className="w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-red-500 transition-all">
@@ -949,7 +949,7 @@ export default function HomePage() {
                       className="w-[20px] h-[20px] "
                     />
                   </div>
-                  <span className="text-xs">AutopartsDirect</span>
+                  <span className="text-xs">auto_partsdirect2</span>
                 </a>
               </div>
             </div>
