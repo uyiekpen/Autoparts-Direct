@@ -431,10 +431,10 @@ export default function HomePage() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-gray-900 to-gray-900"></div>
         <div className="relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 bg-secondary/20 border border-secondary/30 rounded-full px-4 py-2 text-white font-semibold text-xs">
+          {/* <div className="inline-flex items-center gap-2 bg-secondary/20 border border-secondary/30 rounded-full px-4 py-2 text-white font-semibold text-xs">
             <Zap className="w-3 h-3" />
             LAUNCHING SOON IN NIGERIA
-          </div>
+          </div> */}
 
           <h1 className="font-serif font-black text-2xl sm:text-3xl md:text-4xl text-white leading-tight">
             Get Auto Parts in{" "}

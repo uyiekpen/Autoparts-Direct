@@ -1,35 +1,46 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Work_Sans, Open_Sans } from "next/font/google"
-import "./globals.css"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter, Space_Mono, Oswald } from "next/font/google";
+import "./globals.css";
 
-const workSans = Work_Sans({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-work-sans",
-})
+  variable: "--font-inter",
+});
 
-const openSans = Open_Sans({
+const spaceMono = Space_Mono({
   subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
-  variable: "--font-open-sans",
-})
+  variable: "--font-space-mono",
+});
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-oswald",
+});
 
 export const metadata: Metadata = {
   title: "Autoparts Direct - Get Auto Parts Fast in Nigeria",
   description:
     "Find the right auto parts quickly anywhere in Nigeria using SMS and AI technology. Instant assistance for all your automotive needs.",
   generator: "v0.app",
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${workSans.variable} ${openSans.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${spaceMono.variable} ${oswald.variable}`}
+    >
       <body className="font-sans antialiased">{children}</body>
     </html>
-  )
+  );
 }
