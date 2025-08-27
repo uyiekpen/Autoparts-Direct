@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 
-import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import HeroSection from "@/components/layout/hero-section";
 import HowItWorksSection from "@/components/layout/how-it-works-section";
@@ -10,6 +9,7 @@ import FeaturesSection from "@/components/layout/features-section";
 import { ProductsSection } from "@/components/layout/products-section";
 import { TestimonialsSection } from "@/components/layout/testimonials-section";
 import { CTASection } from "@/components/layout/cta-section";
+import Footer from "@/components/layout/Footer";
 
 export default function HomePage() {
 const [emailWaitlistOpen, setEmailWaitlistOpen] = useState(false);
