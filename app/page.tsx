@@ -35,11 +35,11 @@ const handleJoinWaitlist = () => {
   return (
     <div className="min-h-screen bg-gray-900">
       <Header
-        scrollToSection={scrollToSection}
+        // scrollToSection={scrollToSection}
         onJoinWaitlist={handleJoinWaitlist}
       />
-      <HeroSection />
-      <ProductsSection onFindNowClick={handleFindNowClick} />
+      <HeroSection onJoinWaitlist={handleJoinWaitlist} />
+      <ProductsSection onJoinWaitlist={handleJoinWaitlist} />
 
       <FeaturesSection onJoinWaitlist={handleJoinWaitlist} />
       {/* <HowItWorksSection /> */}

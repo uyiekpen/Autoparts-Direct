@@ -56,7 +56,7 @@ const Footer = () => {
                     <span className="w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center transition-all">
                       <Smartphone className="w-3.5 h-3.5 text-white" />
                     </span>
-                    <span className="text-xs">+234 801 234 5678</span>
+                    <span className="text-xs">+2347047263984</span>
                   </a>
                 </li>
 

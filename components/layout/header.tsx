@@ -6,16 +6,11 @@ import { Search, X } from "lucide-react";
 import { HeaderSearchBar } from "./sticky-search-bar"; // <-- Use the non-sticky version we built earlier
 
 interface HeaderProps {
-  scrollToSection: (sectionId: string) => void;
+  // scrollToSection: (sectionId: string) => void;
   onJoinWaitlist: () => void;
 }
 
-
-
-export default function Header(
-  { scrollToSection, onJoinWaitlist }: HeaderProps,
-
-) {
+export default function Header({ onJoinWaitlist }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -39,10 +34,10 @@ export default function Header(
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
             <Button
-              onClick={() => scrollToSection("waitlist")}
+              onClick={onJoinWaitlist}
               className="px-4 py-2 text-sm font-bold rounded-lg bg-secondary hover:bg-secondary/90 text-black border-0 transition-all duration-300 hover:shadow-lg"
             >
-              Join Waitlist
+              Get Early Access{" "}
             </Button>
           </div>
 

@@ -8,10 +8,10 @@ import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
 
 interface ProductsSectionProps {
-  onFindNowClick: () => void;
+  onJoinWaitlist: () => void;
 }
 
-export function ProductsSection({ onFindNowClick }: ProductsSectionProps) {
+export function ProductsSection({ onJoinWaitlist }: ProductsSectionProps) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const products = [
@@ -140,7 +140,7 @@ export function ProductsSection({ onFindNowClick }: ProductsSectionProps) {
                   <Button
                     size="sm"
                     className="bg-secondary hover:bg-secondary/90 text-black text-xs h-7 px-2"
-                    onClick={onFindNowClick}
+                    onClick={onJoinWaitlist}
                   >
                     Find Now
                   </Button>

@@ -28,9 +28,9 @@ export function TestimonialsSection() {
       location: "Port Harcourt",
       text: "The AI matching is incredible. It knew exactly what alternator I needed for my Honda Accord 2015. Highly recommend!",
       rating: 5,
-      image: "/nigerian-man-happy.png",
+      image: "/nigerian-man-smiling.png",
     },
-  ]
+  ];
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
