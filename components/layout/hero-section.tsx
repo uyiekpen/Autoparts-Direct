@@ -59,9 +59,9 @@ export default function HeroSection({ onJoinWaitlist }: CTASectionProps) {
 
       <div className="absolute inset-y-0 left-0 w-full md:w-1/2 bg-gradient-to-r from-black/90 via-black/70 md:via-black/60 to-transparent md:to-transparent"></div>
 
-      <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-4xl ml-4 sm:ml-6 md:ml-16 lg:ml-24">
+      <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-4xl ml-4 sm:ml-6 md:ml-16 lg:ml-16">
         <div className="space-y-4 sm:space-y-6">
-          <h1 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
+          <h1 className="font-serif font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-tight">
             Your Car Needs It. We Find It.
             <span className="text-secondary">Instantly</span>
           </h1>
@@ -77,7 +77,7 @@ export default function HeroSection({ onJoinWaitlist }: CTASectionProps) {
           <div className="pt-4 sm:pt-6">
             <Button
               size="lg"
-              className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 sm:gap-3 bg-secondary hover:bg-secondary/90 text-black border-0 h-[60px] sm:h-[70px] md:h-[80px] w-full sm:w-auto justify-center"
+              className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 sm:gap-3 bg-secondary hover:bg-secondary/90 text-black border-0 h-[40px] sm:h-[50px] md:h-[60px] w-full sm:w-auto justify-center"
               onClick={onJoinWaitlist}
             >
               Get Early Access <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
