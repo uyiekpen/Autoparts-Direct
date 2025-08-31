@@ -4,16 +4,16 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
-interface CTASectionProps {
-  onJoinWaitlist: () => void;
+interface HeroSectionProps {
+  onGetAccess: () => void;
 }
 
-export default function HeroSection({ onJoinWaitlist }: CTASectionProps) {
+export default function HeroSection({ onGetAccess }: HeroSectionProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [
     {
-      src: "/3.jpg",
+      src: "/3.png",
       alt: "Nigerian mechanic working on car engine",
     },
     {
@@ -21,7 +21,7 @@ export default function HeroSection({ onJoinWaitlist }: CTASectionProps) {
       alt: "Modern auto parts warehouse with organized inventory",
     },
     {
-      src: "/5.jpg",
+      src: "/5.png",
       alt: "Professional display of various car parts and components",
     },
   ];
@@ -63,14 +63,14 @@ export default function HeroSection({ onJoinWaitlist }: CTASectionProps) {
         <div className="space-y-4 sm:space-y-6">
           <h1 className="font-serif font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-tight">
             Your Car Needs It. We Find It.
-            <span className="text-secondary">Instantly</span>
+            <span className="text-secondary">We Fix it</span>
           </h1>
 
           <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-2xl leading-relaxed">
-            Get the right parts fast so you can fix it and get back on the road
+            No more waiting. No more uncertainty. Just the right parts, fast,
             <span className="text-secondary font-semibold">
               {" "}
-              – no delays, no stress.
+              from trusted locals who get it.{" "}
             </span>
           </p>
 
@@ -78,9 +78,9 @@ export default function HeroSection({ onJoinWaitlist }: CTASectionProps) {
             <Button
               size="lg"
               className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 sm:gap-3 bg-secondary hover:bg-secondary/90 text-black border-0 h-[40px] sm:h-[50px] md:h-[60px] w-full sm:w-auto justify-center"
-              onClick={onJoinWaitlist}
+              onClick={onGetAccess}
             >
-              Get Early Access <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              Get Access <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
           </div>
         </div>

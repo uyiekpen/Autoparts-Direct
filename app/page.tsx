@@ -8,29 +8,37 @@ import EmailWaitlistPopup from "@/components/ui/email-waitlist-popup";
 import FeaturesSection from "@/components/layout/features-section";
 import { ProductsSection } from "@/components/layout/products-section";
 import { TestimonialsSection } from "@/components/layout/testimonials-section";
-import { CTASection } from "@/components/layout/cta-section";
 import Footer from "@/components/layout/Footer";
+import AuthModal from "@/components/layout/auth-modal";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function HomePage() {
-const [emailWaitlistOpen, setEmailWaitlistOpen] = useState(false);
-const [selectedPartName, setSelectedPartName] = useState("");
+  const [emailWaitlistOpen, setEmailWaitlistOpen] = useState(false);
+  const [selectedPartName, setSelectedPartName] = useState("");
+  const { isAuthenticated } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
-  }
-};
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-const handleFindNowClick = (partName: string) => {
-  setSelectedPartName(partName);
-  setEmailWaitlistOpen(true);
-};
+   const handleJoinWaitlist = () => {
+     if (!isAuthenticated) {
+       setShowAuthModal(true);
+     } else {
+       console.log("User already authenticated - show waitlist or dashboard");
+     }
+   };
 
-const handleJoinWaitlist = () => {
-  setSelectedPartName("General Waitlist");
-  setEmailWaitlistOpen(true);
-};
+  const handleFindNowClick = (partName: string) => {
+    setSelectedPartName(partName);
+    setEmailWaitlistOpen(true);
+  };
+
+  
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -38,7 +46,7 @@ const handleJoinWaitlist = () => {
         // scrollToSection={scrollToSection}
         onJoinWaitlist={handleJoinWaitlist}
       />
-      <HeroSection onJoinWaitlist={handleJoinWaitlist} />
+      <HeroSection onGetAccess={handleJoinWaitlist} />
       <ProductsSection onJoinWaitlist={handleJoinWaitlist} />
 
       <FeaturesSection onJoinWaitlist={handleJoinWaitlist} />
@@ -51,6 +59,11 @@ const handleJoinWaitlist = () => {
         isOpen={emailWaitlistOpen}
         onClose={() => setEmailWaitlistOpen(false)}
         partName={selectedPartName}
+      />
+
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
       />
     </div>
   );

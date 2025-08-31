@@ -146,11 +146,11 @@ const Footer = () => {
               © 2025 Autoparts Direct.
             </p>
             <div className="flex items-center gap-3 text-[#3C464D]  text-xs">
-              <a href="#" className="hover:text-secondary transition-colors">
+              <a href="/privacy-policy" className="hover:text-secondary transition-colors">
                 Privacy Policy
               </a>
               <span>•</span>
-              <a href="#" className="hover:text-secondary transition-colors">
+              <a href="/terms-and-conditions" className="hover:text-secondary transition-colors">
                 Terms of Service
               </a>
             </div>

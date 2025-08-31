@@ -10,15 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Mail,
-  CheckCircle,
-  AlertCircle,
-  Loader2,
-  X,
-  Phone,
-  User,
-} from "lucide-react";
+import { Mail, CheckCircle, AlertCircle, Loader2, X } from "lucide-react";
 
 interface EmailWaitlistPopupProps {
   isOpen: boolean;
@@ -59,7 +51,7 @@ export default function EmailWaitlistPopup({
       setForm((prev) => ({
         ...prev,
         status: "error",
-        message: "Please enter a valid phone number",
+        message: "Please enter a valid phone number (10-15 digits)",
       }));
       return;
     }
@@ -82,7 +74,7 @@ export default function EmailWaitlistPopup({
         ...prev,
         status: "success",
         message:
-          "Great! You've been added to our waitlist. We'll notify you when we launch!",
+          "Great! You've successfully signed up",
       }));
     } catch (error) {
       setForm((prev) => ({
@@ -104,16 +96,9 @@ export default function EmailWaitlistPopup({
         <DialogHeader>
           <div className="flex items-center justify-between">
             <DialogTitle className="text-xl font-serif font-bold text-white">
-              Join Our Waitlist
+              Join now for Early Access
             </DialogTitle>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleClose}
-              className="h-6 w-6 p-0 text-gray-400 hover:text-white"
-            >
-              <X className="h-4 w-4" />
-            </Button>
+          
           </div>
         </DialogHeader>
 
@@ -126,7 +111,7 @@ export default function EmailWaitlistPopup({
                 </div>
               </div>
               <h3 className="font-serif font-bold text-lg text-white mb-2">
-                You're on the list!
+                You're signed up!
               </h3>
               <p className="text-gray-300 text-sm leading-relaxed">
                 {form.message}
@@ -168,6 +153,7 @@ export default function EmailWaitlistPopup({
                       message: "",
                     }))
                   }
+                  aria-label="Full Name"
                   className="w-full px-4 py-3 text-sm border-2 rounded-lg bg-gray-800/50 text-white placeholder:text-gray-400 border-gray-600 focus:border-primary focus:ring-2 focus:ring-primary/30"
                   disabled={form.status === "loading"}
                 />
@@ -185,6 +171,7 @@ export default function EmailWaitlistPopup({
                       message: "",
                     }))
                   }
+                  aria-label="Phone Number"
                   className="w-full px-4 py-3 text-sm border-2 rounded-lg bg-gray-800/50 text-white placeholder:text-gray-400 border-gray-600 focus:border-primary focus:ring-2 focus:ring-primary/30"
                   disabled={form.status === "loading"}
                 />
@@ -202,6 +189,7 @@ export default function EmailWaitlistPopup({
                       message: "",
                     }))
                   }
+                  aria-label="Email Address"
                   className={`w-full px-4 py-3 text-sm border-2 rounded-lg bg-gray-800/50 text-white placeholder:text-gray-400 ${
                     form.status === "error" && form.message.includes("email")
                       ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-400/30"
@@ -225,11 +213,11 @@ export default function EmailWaitlistPopup({
                   {form.status === "loading" ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      Joining waitlist...
+                      Signing Up...
                     </>
                   ) : (
                     <>
-                      Join Waitlist
+                      Sign Up Now
                       <Mail className="w-4 h-4" />
                     </>
                   )}

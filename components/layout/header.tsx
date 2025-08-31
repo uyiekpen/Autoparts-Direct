@@ -3,15 +3,16 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Search, X } from "lucide-react";
-import { HeaderSearchBar } from "./sticky-search-bar"; // <-- Use the non-sticky version we built earlier
+import { HeaderSearchBar } from "./sticky-search-bar";
+import { useAuth } from "@/hooks/use-auth";
 
 interface HeaderProps {
-  // scrollToSection: (sectionId: string) => void;
   onJoinWaitlist: () => void;
 }
 
-export default function Header({ onJoinWaitlist }: HeaderProps) {
+export function Header({ onJoinWaitlist }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, logout, isAuthenticated } = useAuth();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#E3E7EA] backdrop-blur-xl border-b border-gray-200">
@@ -19,26 +20,43 @@ export default function Header({ onJoinWaitlist }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img
-              src="/logo.png"
-              alt="Auto Parts Direct Logo"
-              className="h-10 w-[100px] object-cover"
-            />
+            <a href="/">
+              <img
+                src="/logo.png"
+                alt="Auto Parts Direct Logo"
+                className="h-10 w-[100px] object-cover"
+              />
+            </a>
           </div>
 
           {/* Centered Search Bar (Desktop) */}
           <div className="hidden md:block flex-1 px-8">
-            <HeaderSearchBar onSearch={(q) => console.log("Search:", q)} />
+            <HeaderSearchBar />
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button
-              onClick={onJoinWaitlist}
-              className="px-4 py-2 text-sm font-bold rounded-lg bg-secondary hover:bg-secondary/90 text-black border-0 transition-all duration-300 hover:shadow-lg"
-            >
-              Get Early Access{" "}
-            </Button>
+            {isAuthenticated ? (
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-gray-600">
+                  Welcome, {user?.name}
+                </span>
+                <Button
+                  onClick={logout}
+                  variant="outline"
+                  className="px-4 py-2 text-sm font-medium rounded-lg bg-transparent"
+                >
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Button
+                onClick={onJoinWaitlist}
+                className="px-4 py-2 text-sm font-bold rounded-lg bg-secondary hover:bg-secondary/90 text-black border-0 transition-all duration-300 hover:shadow-lg"
+              >
+                Get Access
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -57,16 +75,31 @@ export default function Header({ onJoinWaitlist }: HeaderProps) {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-300 py-4">
-            <HeaderSearchBar onSearch={(q) => console.log("Search:", q)} />
-            <Button
-              onClick={onJoinWaitlist}
-              className="mt-4 w-full text-sm font-bold rounded-lg bg-secondary hover:bg-secondary/90 text-black border-0"
-            >
-              Get Early Access
-            </Button>
+            <HeaderSearchBar />
+            {isAuthenticated ? (
+              <div className="mt-4 space-y-2">
+                <p className="text-sm text-gray-600">Welcome, {user?.name}</p>
+                <Button
+                  onClick={logout}
+                  variant="outline"
+                  className="w-full text-sm font-medium rounded-lg bg-transparent"
+                >
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Button
+                onClick={onJoinWaitlist}
+                className="mt-4 w-full text-sm font-bold rounded-lg bg-secondary hover:bg-secondary/90 text-black border-0"
+              >
+                Get Access
+              </Button>
+            )}
           </div>
         )}
       </div>
     </header>
   );
 }
+
+export default Header;

@@ -1,19 +1,14 @@
 "use client";
-
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Search } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 interface ProductsSectionProps {
   onJoinWaitlist: () => void;
 }
 
 export function ProductsSection({ onJoinWaitlist }: ProductsSectionProps) {
-  const [searchTerm, setSearchTerm] = useState("");
-
   const products = [
     {
       id: 1,
@@ -75,14 +70,10 @@ export function ProductsSection({ onJoinWaitlist }: ProductsSectionProps) {
     },
   ];
 
-  const filteredProducts = products.filter(
-    (product) => product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    // product.category.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
-
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
+        {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Popular Auto Parts
@@ -90,83 +81,76 @@ export function ProductsSection({ onJoinWaitlist }: ProductsSectionProps) {
           <p className="text-xl text-gray-600 mb-8">
             Find the parts you need from our extensive catalog
           </p>
-
-          <div className="max-w-md mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-            <Input
-              type="text"
-              placeholder="Search for parts..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 py-3 text-lg"
-            />
-          </div>
         </div>
 
+        {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {filteredProducts.map((product, index) => (
+          {products.map((product) => (
             <Card
               key={product.id}
-              className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group overflow-hidden h-[400px]"
+              className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group overflow-hidden"
             >
-              <div className="aspect-square relative overflow-hidden">
-                <img
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                {product.popular && (
-                  <div className="absolute top-1 right-1 bg-secondary text-black text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
-                    Popular
+              <Link href={`/products/${product.id}`}>
+                <div className="aspect-square relative overflow-hidden">
+                  <Image
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+
+                  {/* Labels */}
+                  <div className="absolute top-1 right-1 flex flex-col gap-1">
+                    {product.popular && (
+                      <span className="bg-secondary text-black text-[10px] font-bold px-1.5 py-0.5 rounded">
+                        Popular
+                      </span>
+                    )}
+                    {product.essential && (
+                      <span className="bg-secondary text-black text-[10px] font-bold px-1.5 py-0.5 rounded">
+                        Essential
+                      </span>
+                    )}
                   </div>
-                )}
-                {product.essential && (
-                  <div className="absolute top-1 right-1 bg-secondary text-black text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
-                    Essential
-                  </div>
-                )}
-              </div>
-              <CardContent className="p-3">
-                <h3 className="font-serif font-bold text-sm text-white mb-1 line-clamp-1">
-                  {product.name}
-                </h3>
-                <p className="text-gray-400 text-xs mb-2 line-clamp-2">
-                  {product.description}
-                </p>
-                <div className="flex flex-col gap-2">
-                  <span className="text-secondary font-bold text-xs">
-                    {product.price}
-                  </span>
-                  <Button
-                    size="sm"
-                    className="bg-secondary hover:bg-secondary/90 text-black text-xs h-7 px-2"
-                    onClick={onJoinWaitlist}
-                  >
-                    Find Now
-                  </Button>
                 </div>
-              </CardContent>
+
+                <CardContent className="p-3">
+                  <h3 className="font-serif font-bold text-sm text-white mb-1 line-clamp-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-gray-400 text-xs mb-2 line-clamp-2">
+                    {product.description}
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-secondary font-bold text-xs">
+                      {product.price}
+                    </span>
+                    <Button
+                      size="sm"
+                      className="bg-secondary hover:bg-secondary/90 text-black text-xs h-7 px-2"
+                      aria-label={`Find ${product.name} now`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onJoinWaitlist();
+                      }}
+                    >
+                      Find Now
+                    </Button>
+                  </div>
+                </CardContent>
+              </Link>
             </Card>
-            // <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow h-[400px]">
-            //   <div className="aspect-square relative">
-            //     <img
-            //       src={product.image || "/placeholder.svg"}
-            //       alt={product.name}
-            //       className="w-full h-full object-cover"
-            //     />
-            //   </div>
-            //   <CardContent className="p-6">
-            //     <Badge variant="secondary" className="mb-2">
-            //       {/* {product.category} */}
-            //     </Badge>
-            //     <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name}</h3>
-            //     <p className="text-lg font-bold text-blue-600 mb-4">{product.price}</p>
-            //     <Button onClick={onFindNowClick} className="w-full bg-blue-600 hover:bg-blue-700">
-            //       Find Now
-            //     </Button>
-            //   </CardContent>
-            // </Card>
           ))}
+        </div>
+
+        {/* View All Button */}
+        <div className="text-center mt-12">
+          <Link href="/products">
+            <Button className="bg-secondary hover:bg-secondary/90 text-black px-8 py-3 text-lg">
+              View All Products
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
