@@ -61,7 +61,7 @@ export default function HeroSection({ onGetAccess }: HeroSectionProps) {
 
       <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-4xl ml-4 sm:ml-6 md:ml-16 lg:ml-16">
         <div className="space-y-4 sm:space-y-6">
-          <h1 className="font-serif font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-tight">
+          <h1 className="font-serif font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white ">
             Your Car Needs It. We Find It.
             <span className="text-secondary">We Fix it</span>
           </h1>

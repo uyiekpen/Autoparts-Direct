@@ -44,9 +44,9 @@ export function HeaderSearchBar({ onSearch }: HeaderSearchBarProps) {
     if (searchQuery.trim().length > 2) {
       // Simulating an API call to get related search suggestions
       setSuggestions([
-        `${searchQuery} part 1`,
-        `${searchQuery} part 2`,
-        `${searchQuery} part 3`,
+        `${searchQuery}`,
+        `${searchQuery} `,
+        `${searchQuery} `,
       ]);
       setIsSuggestionsOpen(true);
     } else {
