@@ -16,11 +16,10 @@ interface AuthModalProps {
 }
 
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
-  const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
+    phone: "",
   });
   const { login } = useAuth();
 
@@ -32,42 +31,43 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const user = {
       name: formData.name || formData.email.split("@")[0],
       email: formData.email,
+      phone: formData.phone,
     };
     login(user);
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 h-screen w-screen overflow-hidden overscroll-none">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 h-screen w-screen overflow-none overscroll-none">
       <div className="fixed inset-0 w-full h-full" onClick={onClose} />
       <Card className="w-full max-w-md mx-4 my-auto relative z-10">
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>{isLogin ? "Sign In" : "Sign Up"}</CardTitle>
-          <Button variant="ghost" size="sm" onClick={onClose}>
+          <CardTitle>Join Access</CardTitle>
+          <Button variant="secondary" size="sm" onClick={onClose} className="hover:bg-secondary">
             <X className="h-4 w-4" />
           </Button>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
-              <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
-                <Input
-                  id="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  required={!isLogin}
-                />
-              </div>
-            )}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="name">Full Name</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Enter your full name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email Address</Label>
               <Input
                 id="email"
                 type="email"
+                placeholder="Enter your email address"
                 value={formData.email}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
@@ -76,34 +76,30 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="phone">Phone Number</Label>
               <Input
-                id="password"
-                type="password"
-                value={formData.password}
+                id="phone"
+                type="tel"
+                placeholder="Enter your phone number"
+                value={formData.phone}
                 onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
+                  setFormData({ ...formData, phone: e.target.value })
                 }
                 required
               />
             </div>
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
             >
-              {isLogin ? "Sign In" : "Sign Up"}
+              Join Access
             </Button>
           </form>
           <div className="mt-4 text-center">
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-blue-600 hover:underline text-sm"
-            >
-              {isLogin
-                ? "Don't have an account? Sign up"
-                : "Already have an account? Sign in"}
-            </button>
+            <p className="text-sm text-muted-foreground">
+              Get exclusive access to premium automotive parts and special
+              offers
+            </p>
           </div>
         </CardContent>
       </Card>

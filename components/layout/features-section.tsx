@@ -80,7 +80,7 @@ export default function FeaturesSection({ onJoinWaitlist }: CTASectionProps) {
           </Card>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+        {/* <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
           <Button
             onClick={onJoinWaitlist}
             size="lg"
@@ -89,7 +89,7 @@ export default function FeaturesSection({ onJoinWaitlist }: CTASectionProps) {
             <MessageCircle className="mr-2 h-5 w-5" />
             Get Started Today
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

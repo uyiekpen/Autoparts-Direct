@@ -63,7 +63,7 @@ export default function ProductDetailPage() {
           <div className="mb-8">
             <Link href="/products">
               <Button
-                variant="ghost"
+                variant="secondary"
                 size="sm"
                 className="text-muted-foreground hover:text-foreground"
               >
@@ -78,17 +78,17 @@ export default function ProductDetailPage() {
               <Lock className="h-8 w-8 text-primary" />
             </div>
             <h1 className="text-2xl font-bold text-foreground mb-4">
-              Sign Up Required
+              Get Access
             </h1>
             <p className="text-muted-foreground mb-6">
-              Please sign up or sign in to view detailed product information and
-              make purchases.
+              Join our exclusive platform to view detailed product information
+              and make purchases.
             </p>
             <Button
               onClick={() => setShowAuthModal(true)}
               className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
-              Sign Up / Sign In
+              Join Access
             </Button>
           </div>
         </main>
@@ -132,7 +132,7 @@ export default function ProductDetailPage() {
             <div className="flex items-center gap-4">
               <Link href="/products">
                 <Button
-                  variant="ghost"
+                  variant="secondary"
                   size="sm"
                   className="text-muted-foreground hover:text-foreground hover:bg-secondary"
                 >
