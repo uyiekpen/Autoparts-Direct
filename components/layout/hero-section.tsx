@@ -60,27 +60,28 @@ export default function HeroSection({ onGetAccess }: HeroSectionProps) {
       <div className="absolute inset-y-0 left-0 w-full md:w-1/2 bg-gradient-to-r from-black/90 via-black/70 md:via-black/60 to-transparent md:to-transparent"></div>
 
       <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-4xl ml-4 sm:ml-6 md:ml-16 lg:ml-16">
-        <div className="space-y-4 sm:space-y-6">
-          <h1 className="font-serif font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white ">
-            Your Car Needs It. We Find It.
-            <span className="text-secondary">We Fix it</span>
+        <div className="space-y-3 sm:space-y-4">
+          <h1 className="font-serif font-black text-lg sm:text-xl md:text-2xl lg:text-3xl text-white">
+            The easiest way to get the right car parts and trusted service
           </h1>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-2xl leading-relaxed">
-            No more waiting. No more uncertainty. Just the right parts, fast,
+          <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl leading-relaxed">
+            No more guessing, no more wasted money. Whether you’re fixing your
+            own car, running a workshop, or selling parts we connect you with
+            the people and
             <span className="text-secondary font-semibold">
               {" "}
-              from trusted locals who get it.{" "}
+              parts you can actually trust{" "}
             </span>
           </p>
 
-          <div className="pt-4 sm:pt-6">
+          <div className="pt-3 sm:pt-4">
             <Button
               size="lg"
-              className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 sm:gap-3 bg-secondary hover:bg-secondary/90 text-black border-0 h-[40px] sm:h-[50px] md:h-[60px] w-full sm:w-auto justify-center"
+              className="px-5 sm:px-6 md:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 sm:gap-3 bg-secondary hover:bg-secondary/90 text-black border-0 h-[38px] sm:h-[46px] md:h-[52px] w-full sm:w-auto justify-center"
               onClick={onGetAccess}
             >
-              Get Access <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              Get Access <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
           </div>
         </div>

@@ -1,8 +1,7 @@
 "use client";
 
 import type React from "react";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -23,6 +22,19 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   });
   const { login } = useAuth();
 
+  // Prevent background scrolling when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,19 +50,27 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 h-screen w-screen overflow-none overscroll-none">
-      <div className="fixed inset-0 w-full h-full" onClick={onClose} />
-      <Card className="w-full max-w-md mx-4 my-auto relative z-10">
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Join Access</CardTitle>
-          <Button variant="secondary" size="sm" onClick={onClose} className="hover:bg-secondary">
+    <div className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50 p-4 overscroll-none">
+      <div className="absolute inset-0 w-full h-full" onClick={onClose} />
+      <Card className="w-full max-w-md relative z-10 max-h-[90vh] overflow-y-auto">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 sticky top-0 bg-background z-20 border-b">
+          <CardTitle className="text-xl">Join Access</CardTitle>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="h-8 w-8 p-0 rounded-full"
+            aria-label="Close modal"
+          >
             <X className="h-4 w-4" />
           </Button>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-4">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name" className="text-sm font-medium">
+                Full Name
+              </Label>
               <Input
                 id="name"
                 type="text"
@@ -60,10 +80,13 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   setFormData({ ...formData, name: e.target.value })
                 }
                 required
+                className="text-base"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email" className="text-sm font-medium">
+                Email Address
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -73,10 +96,14 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   setFormData({ ...formData, email: e.target.value })
                 }
                 required
+                className="text-base"
+                inputMode="email"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
+              <Label htmlFor="phone" className="text-sm font-medium">
+                Phone Number
+              </Label>
               <Input
                 id="phone"
                 type="tel"
@@ -86,17 +113,20 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   setFormData({ ...formData, phone: e.target.value })
                 }
                 required
+                className="text-base"
+                inputMode="tel"
               />
             </div>
             <Button
               type="submit"
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 text-base font-medium"
+              size="lg"
             >
               Join Access
             </Button>
           </form>
           <div className="mt-4 text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Get exclusive access to premium automotive parts and special
               offers
             </p>

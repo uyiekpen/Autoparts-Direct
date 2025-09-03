@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Search, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { HeaderSearchBar } from "./sticky-search-bar";
 import { useAuth } from "@/hooks/use-auth";
 
@@ -29,9 +29,31 @@ export function Header({ onJoinWaitlist }: HeaderProps) {
             </a>
           </div>
 
-          {/* Centered Search Bar (Desktop) */}
-          <div className="hidden md:block flex-1 px-8">
-            <HeaderSearchBar />
+          <div className="hidden md:flex items-center gap-8">
+            <a
+              href="#services"
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Services
+            </a>
+            <a
+              href="#mechanics"
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Mechanics
+            </a>
+            <a
+              href="/products"
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Parts
+            </a>
+            <a
+              href="#about"
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              About
+            </a>
           </div>
 
           {/* Desktop CTA */}
@@ -67,7 +89,7 @@ export function Header({ onJoinWaitlist }: HeaderProps) {
             {mobileMenuOpen ? (
               <X className="w-5 h-5" />
             ) : (
-              <Search className="w-5 h-5" />
+              <Menu className="w-5 h-5" />
             )}
           </button>
         </div>
@@ -75,7 +97,32 @@ export function Header({ onJoinWaitlist }: HeaderProps) {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-300 py-4">
-            <HeaderSearchBar />
+            <div className="flex flex-col space-y-3">
+              <a
+                href="#services"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                Services
+              </a>
+              <a
+                href="#mechanics"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                Mechanics
+              </a>
+              <a
+                href="/products"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                Parts
+              </a>
+              <a
+                href="#about"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                About
+              </a>
+            </div>
             {isAuthenticated ? (
               <div className="mt-4 space-y-2">
                 <p className="text-sm text-gray-600">Welcome, {user?.name}</p>

@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Truck, Shield, Wrench, MessageCircle } from "lucide-react";
 import { Button } from "../ui/button";
+import RequestFormModal from "./requestform";
 
 interface CTASectionProps {
   onJoinWaitlist: () => void;
@@ -80,16 +81,9 @@ export default function FeaturesSection({ onJoinWaitlist }: CTASectionProps) {
           </Card>
         </div>
 
-        {/* <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-          <Button
-            onClick={onJoinWaitlist}
-            size="lg"
-            className="bg-white text-gray-800 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
-          >
-            <MessageCircle className="mr-2 h-5 w-5" />
-            Get Started Today
-          </Button>
-        </div> */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+          <RequestFormModal />
+        </div>
       </div>
     </section>
   );
