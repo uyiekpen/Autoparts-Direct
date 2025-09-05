@@ -2,13 +2,7 @@
 
 import type React from "react";
 import { useState } from "react";
-import {
-  Card,
-  CardTitle,
-  CardHeader,
-  CardDescription,
-  CardContent,
-} from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import { Label } from "../ui/label";
@@ -53,7 +47,6 @@ const RequestFormModal = () => {
     setIsSubmitting(true);
     setSubmitMessage("");
 
-    // Basic validation
     if (
       !formData.firstName ||
       !formData.lastName ||
@@ -65,10 +58,9 @@ const RequestFormModal = () => {
       return;
     }
 
-    // Simulate form submission
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      setSubmitMessage("Thank you! We'll contact you within 24 hours.");
+      setSubmitMessage("✅ Thank you! We'll contact you within 24 hours.");
       setFormData({
         firstName: "",
         lastName: "",
@@ -78,11 +70,9 @@ const RequestFormModal = () => {
         requestType: "",
         description: "",
       });
-
-      // Close modal after 2 seconds
       setTimeout(() => setOpen(false), 2000);
     } catch (error) {
-      setSubmitMessage("Something went wrong. Please try again.");
+      setSubmitMessage("❌ Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -92,32 +82,36 @@ const RequestFormModal = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       {/* Trigger button */}
       <DialogTrigger asChild>
-        <Button size="lg" className="px-6 py-4 text-lg font-bold bg-secondary hover:bg-secondary/90 text-black border-0 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
+        <Button
+          size="lg"
+          className="px-6 py-3 text-base sm:text-lg font-bold rounded-xl w-full sm:w-auto"
+        >
           Request Service
         </Button>
       </DialogTrigger>
 
-      {/* Modal Content */}
-      <DialogContent className="max-h-[95vh] rounded-3xl">
+      {/* Modal */}
+      <DialogContent className="w-[95%] sm:w-full max-w-md sm:max-w-2xl rounded-2xl max-h-[95vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="font-serif text-2xl">
+          <DialogTitle className="font-serif text-xl sm:text-2xl">
             Get Started Today
           </DialogTitle>
-          <DialogDescription className="text-base">
+          <DialogDescription className="text-sm sm:text-base">
             Tell us what you need and we’ll connect you with the right
             professionals.
           </DialogDescription>
         </DialogHeader>
-        <div className="overflow-y-auto h-[300px] pr-2">
+
+        <div className="mt-4">
           <Card className="border-2 border-primary/20">
             <CardContent className="space-y-6 pt-6">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-4">
+                {/* Names */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name *</Label>
                     <Input
                       id="firstName"
-                      aria-required="true"
                       placeholder="John"
                       value={formData.firstName}
                       onChange={(e) =>
@@ -130,7 +124,6 @@ const RequestFormModal = () => {
                     <Label htmlFor="lastName">Last Name *</Label>
                     <Input
                       id="lastName"
-                      aria-required="true"
                       placeholder="Doe"
                       value={formData.lastName}
                       onChange={(e) =>
@@ -141,13 +134,13 @@ const RequestFormModal = () => {
                   </div>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4">
+                {/* Contact */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="email">Email *</Label>
                     <Input
                       id="email"
                       type="email"
-                      aria-required="true"
                       placeholder="john@example.com"
                       value={formData.email}
                       onChange={(e) =>
@@ -170,6 +163,7 @@ const RequestFormModal = () => {
                   </div>
                 </div>
 
+                {/* Car Model */}
                 <div className="space-y-2">
                   <Label htmlFor="carModel">Car Make & Model</Label>
                   <Input
@@ -182,6 +176,7 @@ const RequestFormModal = () => {
                   />
                 </div>
 
+                {/* Request Type */}
                 <div className="space-y-2">
                   <Label htmlFor="requestType">What do you need? *</Label>
                   <Select
@@ -204,6 +199,7 @@ const RequestFormModal = () => {
                   </Select>
                 </div>
 
+                {/* Description */}
                 <div className="space-y-2">
                   <Label htmlFor="description">
                     Describe your issue (optional)
@@ -218,9 +214,10 @@ const RequestFormModal = () => {
                   />
                 </div>
 
+                {/* Feedback */}
                 {submitMessage && (
                   <div
-                    className={`p-4 rounded-lg text-sm ${
+                    className={`p-3 rounded-lg text-sm ${
                       submitMessage.includes("Thank you")
                         ? "bg-green-50 text-green-700 border border-green-200"
                         : "bg-red-50 text-red-700 border border-red-200"
@@ -230,10 +227,11 @@ const RequestFormModal = () => {
                   </div>
                 )}
 
+                {/* Submit */}
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full text-lg py-6"
+                  className="w-full text-base sm:text-lg py-4 sm:py-6"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

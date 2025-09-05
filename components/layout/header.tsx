@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, Search, X } from "lucide-react";
 import { HeaderSearchBar } from "./sticky-search-bar";
 import { useAuth } from "@/hooks/use-auth";
+import RequestFormModal from "./requestform";
 
 interface HeaderProps {
   onJoinWaitlist: () => void;
@@ -29,7 +30,7 @@ export function Header({ onJoinWaitlist }: HeaderProps) {
             </a>
           </div>
 
-          <div className="hidden md:flex items-center gap-8">
+          {/* <div className="hidden md:flex items-center gap-8">
             <a
               href="#services"
               className="text-foreground hover:text-primary transition-colors"
@@ -54,7 +55,7 @@ export function Header({ onJoinWaitlist }: HeaderProps) {
             >
               About
             </a>
-          </div>
+          </div> */}
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
@@ -70,6 +71,7 @@ export function Header({ onJoinWaitlist }: HeaderProps) {
                 >
                   Sign Out
                 </Button>
+                <RequestFormModal />
               </div>
             ) : (
               <Button
@@ -97,7 +99,7 @@ export function Header({ onJoinWaitlist }: HeaderProps) {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-300 py-4">
-            <div className="flex flex-col space-y-3">
+            {/* <div className="flex flex-col space-y-3">
               <a
                 href="#services"
                 className="text-foreground hover:text-primary transition-colors"
@@ -122,7 +124,7 @@ export function Header({ onJoinWaitlist }: HeaderProps) {
               >
                 About
               </a>
-            </div>
+            </div> */}
             {isAuthenticated ? (
               <div className="mt-4 space-y-2">
                 <p className="text-sm text-gray-600">Welcome, {user?.name}</p>
@@ -142,6 +144,10 @@ export function Header({ onJoinWaitlist }: HeaderProps) {
                 Get Access
               </Button>
             )}
+
+            <div className="mt-4 flex justify-center">
+              <RequestFormModal />
+            </div>
           </div>
         )}
       </div>

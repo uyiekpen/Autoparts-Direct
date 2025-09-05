@@ -7,8 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Truck, Shield, Wrench, MessageCircle } from "lucide-react";
-import { Button } from "../ui/button";
+import { Truck, Shield, Wrench, Users } from "lucide-react";
 import RequestFormModal from "./requestform";
 
 interface CTASectionProps {
@@ -19,17 +18,23 @@ export default function FeaturesSection({ onJoinWaitlist }: CTASectionProps) {
   return (
     <section id="features" className="px-4 py-12 bg-gray-800">
       <div className="max-w-7xl mx-auto">
+        {/* Section Title */}
         <div className="text-center mb-12">
           <h2 className="font-serif font-black text-2xl sm:text-3xl text-white mb-4">
-            Why Car Owners <span className="text-secondary">Choose Us</span>
+            Why{" "}
+            <span className="text-secondary">Users, Vendors & Mechanics</span>{" "}
+            Choose Us
           </h2>
           <p className="text-base text-gray-300 max-w-2xl mx-auto">
-            Your trusted source for quality automotive parts and expert service
+            A trusted platform connecting car owners, mechanics, and vendors
+            with the right parts, services, and opportunities.
           </p>
         </div>
 
+        {/* Features Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group">
+          {/* Fast Delivery */}
+          {/* <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group">
             <CardHeader className="text-center pb-3">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                 <Truck className="w-6 h-6 text-white" />
@@ -40,12 +45,14 @@ export default function FeaturesSection({ onJoinWaitlist }: CTASectionProps) {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-center text-gray-300 leading-relaxed text-sm">
-                Quick shipping nationwide with tracking. Get your parts when you
-                need them, with reliable delivery service.
+                Quick nationwide shipping with real-time tracking. Whether
+                you’re a car owner, mechanic, or vendor — your order gets to you
+                on time.
               </CardDescription>
             </CardContent>
-          </Card>
+          </Card> */}
 
+          {/* Quality Guaranteed */}
           <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group">
             <CardHeader className="text-center pb-3">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
@@ -57,12 +64,13 @@ export default function FeaturesSection({ onJoinWaitlist }: CTASectionProps) {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-center text-gray-300 leading-relaxed text-sm">
-                Authentic OEM and high-quality aftermarket parts. Every product
-                backed by our quality guarantee and warranty.
+                Only authentic OEM and trusted aftermarket products. Every part
+                is backed by our warranty and quality checks.
               </CardDescription>
             </CardContent>
           </Card>
 
+          {/* Expert Support */}
           <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group sm:col-span-2 lg:col-span-1">
             <CardHeader className="text-center pb-3">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
@@ -74,13 +82,33 @@ export default function FeaturesSection({ onJoinWaitlist }: CTASectionProps) {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-center text-gray-300 leading-relaxed text-sm">
-                Our automotive experts help you find the right parts for your
-                vehicle. Professional guidance and technical support included.
+                Mechanics get guidance, vendors get stocking advice, and car
+                owners get the right fit. Professional support for every role in
+                the ecosystem.
+              </CardDescription>
+            </CardContent>
+          </Card>
+
+          {/* Community / Network */}
+          <Card className="bg-gray-900/80 border-2 border-gray-700 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg group sm:col-span-2 lg:col-span-1">
+            <CardHeader className="text-center pb-3">
+              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                <Users className="w-6 h-6 text-white" />
+              </div>
+              <CardTitle className="font-serif font-bold text-lg text-white">
+                Connected Community
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription className="text-center text-gray-300 leading-relaxed text-sm">
+                A growing network where car owners, vendors, and mechanics
+                connect, collaborate, and grow their businesses together.
               </CardDescription>
             </CardContent>
           </Card>
         </div>
 
+        {/* CTA */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
           <RequestFormModal />
         </div>
